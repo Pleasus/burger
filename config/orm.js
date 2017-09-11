@@ -1,6 +1,8 @@
+
+// Pull in the connection module from the connection.js file
 var connection = require("./connection.js");
 
-// a function that will be used to build queries
+// Helper functions to build queries
 function printQuestionMarks(num) {
 	var arr = [];
 
@@ -11,7 +13,6 @@ function printQuestionMarks(num) {
 	return arr.toString();
 }
 
-// another function for building queries
 function objToSql(ob) {
 	var arr = [];
 
@@ -24,9 +25,10 @@ function objToSql(ob) {
 	return arr.toString();
 }
 
-// define our orm that will be exported to the burgers.js model
+// define orm
 var orm = {
-	// selectAll function for grabbing everything from the table
+
+	// Function to get all info from the table
 	selectAll: function(tableInput, cb) {
 		var queryString = 'SELECT * FROM ' + tableInput + ';';
 		connection.query(queryString, function(err, result) {
@@ -35,7 +37,7 @@ var orm = {
 			cb(result);
 		});
 	},
-	// insertOne function for inserting one burger into table
+	// Function to put one burger into the table
 	insertOne: function(table, cols, vals, cb) {
 		var queryString = 'INSERT INTO ' + table;
 
@@ -56,7 +58,7 @@ var orm = {
 		});
 	},
 
-	// update one function for changing a burger status
+	// Function for changing the burger status
 	updateOne: function(table, objColVals, condition, cb) {
 		var queryString = 'UPDATE ' + table;
 
@@ -75,4 +77,5 @@ var orm = {
 	}
 };
 
+// Make orm module available to other code
 module.exports = orm;

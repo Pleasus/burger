@@ -1,3 +1,4 @@
+// Require orm.js information
 var orm = require("../config/orm.js");
 
 var burger = {
@@ -21,4 +22,5 @@ var burger = {
 	}
 };
 
+// Make burger module available to other code
 module.exports = burger;
